@@ -34,13 +34,6 @@ export function Game() {
     // USER_VALUE: User,
     // COMPUTER_VALUE: Computer
     const [winner, setWinner] = useState<null | string | number>(null);
-    // How won the winner?
-    // There are 4 ways to win:
-    // 1. Horizontal (row) (row-rowIndex)
-    // 2. Vertical (column) (column-columnIndex)
-    // 3. Diagonal left (left) (top-left to bottom-right) (start from left)
-    // 4. Diagonal right (right) (top-right to bottom-left) (start from right)
-    const [howWon, setHowWon] = useState<null | string>(null);
     // The board state
     // It will be a 3x3 array
     // Each cell will have a value with either USER_VALUE, COMPUTER_VALUE or BOARD_DEFAULT
@@ -59,6 +52,8 @@ export function Game() {
 
     // When anyone wins, remove the available moves
     useEffect(() => {
+        console.log("   winner", winner);
+
         if (winner !== null) {
             // remove the available moves
             setAvailableMoves([]);
@@ -80,7 +75,7 @@ export function Game() {
 
     // If the next move is not for the user, then the computer will move
     useEffect(() => {
-        if (!nextMoveUser) {
+        if (winner === null && !nextMoveUser) {
             const randomIndex = Math.floor(
                 Math.random() * availableMoves.length
             );
@@ -97,54 +92,53 @@ export function Game() {
             setAvailableMoves(
                 availableMoves.filter((move) => move !== randomMove)
             );
+            checkWinner(newBoard);
             setNextMoveUser(true);
         }
     }, [nextMoveUser]);
 
     // detect if anyone won when the board changes
-    useEffect(() => {
+    // useEffect(() => {
+    const checkWinner = (newBoard: string[][]) => {
         // check rows
-        for (let i = 0; i < board.length; i++) {
-            const row = board[i];
+        for (let i = 0; i < newBoard.length; i++) {
+            const row = newBoard[i];
             if (
                 row[0] === row[1] &&
                 row[1] === row[2] &&
                 row[0] !== BOARD_DEFAULT
             ) {
                 setWinner(row[0]);
-                setHowWon(`row-${i}`);
                 return;
             }
         }
 
         // check columns
-        for (let i = 0; i < board.length; i++) {
-            const column = board.map((row) => row[i]);
+        for (let i = 0; i < newBoard.length; i++) {
+            const column = newBoard.map((row) => row[i]);
             if (
                 column[0] === column[1] &&
                 column[1] === column[2] &&
                 column[0] !== BOARD_DEFAULT
             ) {
                 setWinner(column[0]);
-                setHowWon(`column-${i}`);
                 return;
             }
         }
 
         // check diagonals
-        const diagonal1 = board.map((row, index) => row[index]);
+        const diagonal1 = newBoard.map((row, index) => row[index]);
         if (
             diagonal1[0] === diagonal1[1] &&
             diagonal1[1] === diagonal1[2] &&
             diagonal1[0] !== BOARD_DEFAULT
         ) {
             setWinner(diagonal1[0]);
-            setHowWon("left");
             return;
         }
 
-        const diagonal2 = board.map(
-            (row, index) => row[board.length - 1 - index]
+        const diagonal2 = newBoard.map(
+            (row, index) => row[newBoard.length - 1 - index]
         );
         if (
             diagonal2[0] === diagonal2[1] &&
@@ -152,10 +146,10 @@ export function Game() {
             diagonal2[0] !== BOARD_DEFAULT
         ) {
             setWinner(diagonal2[0]);
-            setHowWon("right");
             return;
         }
-    }, [board]);
+        // }, [board]);
+    };
 
     // When the user clicks on a cell
     const onClick = (rowIndex: number, colIndex: number) => {
@@ -170,6 +164,7 @@ export function Game() {
                         (move) => move !== rowIndex * 3 + colIndex
                     )
                 );
+                checkWinner(newBoard);
                 setNextMoveUser(false);
             } else {
                 console.warn("Move not available");
@@ -194,7 +189,7 @@ export function Game() {
             </div>
 
             <div
-                className={`board ${howWon ? howWon : ""} ${
+                className={`board ${
                     winner === USER_VALUE
                         ? "user"
                         : winner === COMPUTER_VALUE
@@ -202,7 +197,6 @@ export function Game() {
                         : ""
                 }`}
             >
-                <span className="line"></span>
                 {board.map((row, rowIndex) => (
                     <div className="row" key={rowIndex}>
                         {row.map((cell, cellIndex) => {

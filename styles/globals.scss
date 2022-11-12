@@ -43,3 +43,10 @@ body {
 @import "./navbar.scss";
 @import "./board.scss";
 @import "resultPopup.scss";
+
+@media screen and (max-width: 300px) {
+  .play-button {
+    width: 100px;
+    font-size: 20px;
+  }
+}

@@ -33,3 +33,38 @@
 .result-popup.computer .text {
     color: red;
 }
+
+@media screen and (max-width: 1200px) {
+    .result-popup {
+        padding: 30px 100px;
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .result-popup {
+        padding: 25px 50px;
+        font-size: 20px;
+    }
+}
+
+// 900
+@media screen and (max-width: 900px) {
+    .result-popup {
+        top: 60px;
+    }
+}
+
+// 400
+@media screen and (max-width: 400px) {
+    .result-popup {
+        padding: 20px 30px;
+        font-size: 15px;
+
+        button {
+            margin-top: 20px;
+            font-size: 20px;
+            width: 150px;
+        }
+    }
+}

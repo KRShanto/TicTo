@@ -1,8 +1,5 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useState } from "react";
-import { Game } from "../components/Game";
-import Navbar from "../components/Navbar";
 
 export const USER_VALUE = "X";
 export const COMPUTER_VALUE = "O";
@@ -15,6 +12,10 @@ export default function Home() {
             <Head>
                 <title>TicTo</title>
                 <meta name="description" content="Play Tic Tac Toe game" />
+                {/* <meta
+                    content="width=device-width, initial-scale=1"
+                    name="viewport"
+                /> */}
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
