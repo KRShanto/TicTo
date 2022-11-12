@@ -1,0 +1,37 @@
+nav {
+    $color: rgb(0, 255, 140);
+
+    background-color: rgb(3, 51, 90);
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px;
+
+    .logo {
+        color: gold;
+        font-size: 2rem;
+    }
+
+    .links {
+        display: flex;
+        align-items: center;
+        font-size: 1.2rem;
+
+
+        a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: .5s;
+            font-weight: bold;
+            font-family: sans-serif;
+
+            &:hover {
+                color: $color;
+            }
+        }
+
+        a.active {
+            color: $color;
+        }
+    }
+}

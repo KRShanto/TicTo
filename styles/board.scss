@@ -1,0 +1,193 @@
+$userColor: cyan;
+$computerColor: magenta;
+
+.info-value {
+    text-align: center;
+    margin: 30px;
+    font-family: 'Courier New', Courier, monospace;
+
+    .user {
+        color: $userColor;
+    }
+
+    .computer {
+        color: $computerColor;
+    }
+}
+
+.board {
+    position: relative;
+    // border: 2px solid red;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+
+    .cell {
+        width: 150px;
+        height: 150px;
+        font-size: 100px;
+        background-color: rgb(13, 5, 79);
+        border: 1px solid white;
+        margin: 1px;
+        border-radius: 5px;
+        text-align: center;
+        transition: .5s;
+
+
+    }
+
+    // not .cell.disabled
+    .cell:not(.disabled) {
+        &:hover {
+            cursor: pointer;
+            background-color: rgb(10, 56, 142);
+        }
+    }
+
+    .cell.user {
+        color: $userColor;
+    }
+
+    .cell.computer {
+        color: $computerColor;
+    }
+
+
+}
+
+.board {
+    .line {
+        width: 10px;
+        position: absolute;
+        // height: 140%;
+        border-radius: 10px;
+        box-shadow: 0 0 10px white;
+    }
+}
+
+.board.left {
+
+    // The .line class is used to draw the lines between the cells
+    // It will start at the top left corner and go to the bottom right corner
+    .line {
+        top: 0;
+        left: -2px;
+        height: 140%;
+        transform-origin: top;
+        transform: rotate(315deg);
+    }
+}
+
+.board.right {
+
+    // The .line class is used to draw the lines between the cells
+    // It will start at the top right corner and go to the bottom left corner
+    .line {
+        top: 0;
+        right: -2px;
+        height: 140%;
+        transform-origin: top;
+        transform: rotate(45deg);
+    }
+}
+
+
+.board.row-0 {
+
+    // The .line class is used to draw the lines between the cells
+    // It will start at the top left corner and go to the top right corner
+    .line {
+        top: 71px;
+        left: -2px;
+        height: 100%;
+        transform-origin: top;
+        transform: rotate(270deg);
+    }
+}
+
+.board.row-1 {
+
+    // The .line class is used to draw the lines between the cells
+    // It will start at the top left corner and go to the top right corner
+    .line {
+        top: 226px;
+        left: -2px;
+        height: 100%;
+        transform-origin: top;
+        transform: rotate(270deg);
+    }
+}
+
+.board.row-2 {
+
+    // The .line class is used to draw the lines between the cells
+    // It will start at the top left corner and go to the top right corner
+    .line {
+        top: 381px;
+        left: -2px;
+        height: 100%;
+        transform-origin: top;
+        transform: rotate(270deg);
+    }
+}
+
+.board.column-0 {
+
+    // The .line class is used to draw the lines between the cells
+    // It will start at the top left corner and go to the bottom left corner
+    .line {
+        top: 0;
+        left: 71px;
+        height: 100%;
+        transform-origin: top;
+        transform: rotate(0deg);
+    }
+}
+
+
+.board.column-1 {
+
+    // The .line class is used to draw the lines between the cells
+    // It will start at the top left corner and go to the bottom left corner
+    .line {
+        top: 0;
+        left: 226px;
+        height: 100%;
+        transform-origin: top;
+        transform: rotate(0deg);
+    }
+}
+
+.board.column-2 {
+
+    // The .line class is used to draw the lines between the cells
+    // It will start at the top left corner and go to the bottom left corner
+    .line {
+        top: 0;
+        left: 381px;
+        height: 100%;
+        transform-origin: top;
+        transform: rotate(0deg);
+    }
+}
+
+.board.user {
+    .line {
+        background-color: $userColor;
+    }
+}
+
+.board.computer {
+    .line {
+        background-color: $computerColor;
+    }
+}

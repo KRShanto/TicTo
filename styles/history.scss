@@ -1,0 +1,57 @@
+.history {
+    .title {
+        text-align: center;
+        margin: 20px;
+        // margin-bottom: 40px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .score {
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 18px;
+    }
+
+    table {
+        width: 40%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        // border: 2px solid rgb(208, 208, 208);
+        margin: auto;
+        box-shadow: 0 0 5px white;
+
+        th {
+            border: 1px solid white;
+            padding: 10px;
+            background-color: rgb(0, 54, 98);
+            font-size: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+
+        td {
+            border: 1px solid white;
+            padding: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        td.winner {
+            font-weight: bold;
+
+        }
+
+
+        tr.user {
+            background-color: rgb(6, 79, 50);
+            ;
+        }
+
+        tr.computer {
+            background-color: rgb(98, 0, 0);
+        }
+
+        tr.draw {
+            background-color: rgb(98, 98, 0);
+        }
+    }
+}

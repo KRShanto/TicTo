@@ -1,0 +1,45 @@
+html,
+body {
+
+  background-color: rgb(8, 0, 35);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: rgb(208, 208, 208);
+}
+
+.play-button {
+  $color: rgb(7, 169, 101);
+
+  width: 200px;
+  background-color: transparent;
+  color: $color;
+  border: none;
+  padding: 10px;
+  font-size: 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s;
+  border: 3px solid $color;
+  font-weight: bold;
+  text-shadow: 0px 0px 2px black;
+  text-decoration: none;
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+  &:hover {
+    background-color: $color;
+    border-color: $color;
+    color: white;
+
+  }
+}
+
+@import "./index.scss";
+@import "./history.scss";
+@import "./navbar.scss";
+@import "./board.scss";
+@import "resultPopup.scss";
