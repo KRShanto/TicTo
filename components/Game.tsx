@@ -2,18 +2,57 @@ import { useState, useEffect } from "react";
 import ResultPopup from "./ResultPopup";
 import { USER_VALUE, COMPUTER_VALUE, BOARD_DEFAULT, LOGS_NAME } from "../pages";
 
+// Save the log to the local storage  [[time, winner], [time, winner], ...]
+function saveHistory(winner: string | number) {
+    // get the log if it exists
+    const history = localStorage.getItem(LOGS_NAME);
+    if (history) {
+        // parse it to JSON
+        const parsedLogs = JSON.parse(history);
+        // push (time, winner) to the history
+        parsedLogs.push([new Date().toLocaleString(), winner]);
+        // set the history to the local storage
+        localStorage.setItem(LOGS_NAME, JSON.stringify(parsedLogs));
+    } else {
+        // if the history doesn't exist, create it with the first (time, winner)
+        localStorage.setItem(LOGS_NAME, JSON.stringify([[new Date(), winner]]));
+    }
+}
+
+// The game component
+// This component is responsible for the game logic
+// It will be a 3x3 grid
+// After the user moves the computer will move randomly
+// Select the first move randomly
 export function Game() {
-    // It will be a 3x3 grid
-    // After the user moves the computer will move randomly
-    // Select the first move randomly
-    // The user is X, the computer is O
-    const [nextMoveUser, setIsNextMoveUser] = useState(Math.random() > 0.5);
+    // Is the next move for the user?
+    // First time it will be randomlly selected
+    const [nextMoveUser, setNextMoveUser] = useState(Math.random() > 0.5);
+    // Who is the winner?
+    // null: no winner yet
+    // 0: Draw,
+    // USER_VALUE: User,
+    // COMPUTER_VALUE: Computer
     const [winner, setWinner] = useState<null | string | number>(null);
+    // How won the winner?
+    // There are 4 ways to win:
+    // 1. Horizontal (row) (row-rowIndex)
+    // 2. Vertical (column) (column-columnIndex)
+    // 3. Diagonal left (left) (top-left to bottom-right) (start from left)
+    // 4. Diagonal right (right) (top-right to bottom-left) (start from right)
+    const [howWon, setHowWon] = useState<null | string>(null);
+    // The board state
+    // It will be a 3x3 array
+    // Each cell will have a value with either USER_VALUE, COMPUTER_VALUE or BOARD_DEFAULT
+    // At the beginning all cells will have BOARD_DEFAULT
+    // After when the user or the computer moves the cell will have USER_VALUE or COMPUTER_VALUE
     const [board, setBoard] = useState([
         [BOARD_DEFAULT, BOARD_DEFAULT, BOARD_DEFAULT],
         [BOARD_DEFAULT, BOARD_DEFAULT, BOARD_DEFAULT],
         [BOARD_DEFAULT, BOARD_DEFAULT, BOARD_DEFAULT],
     ]);
+    // Available moves
+    // After anyone moves, the move's cell's index will be removed from the available moves
     const [availableMoves, setAvailableMoves] = useState([
         0, 1, 2, 3, 4, 5, 6, 7, 8,
     ]);
@@ -21,26 +60,18 @@ export function Game() {
     // When anyone wins, remove the available moves
     useEffect(() => {
         if (winner !== null) {
+            // remove the available moves
             setAvailableMoves([]);
-            // save the info the local storage // [(time, winner), (time, winner), ...]
-            // TODO show the info in the logs page
-            const logs = localStorage.getItem(LOGS_NAME);
-            if (logs) {
-                const parsedLogs = JSON.parse(logs);
-                parsedLogs.push([new Date(), winner]);
-                localStorage.setItem(LOGS_NAME, JSON.stringify(parsedLogs));
-            } else {
-                localStorage.setItem(
-                    LOGS_NAME,
-                    JSON.stringify([[new Date(), winner]])
-                );
-            }
+
+            // save the log
+            saveHistory(winner);
         }
     }, [winner]);
 
     // When the available is empty, it means that the game is draw
     useEffect(() => {
         if (availableMoves.length === 0) {
+            // If still no winner, set the winner to 0 (draw)
             if (!winner) {
                 setWinner(0);
             }
@@ -66,11 +97,11 @@ export function Game() {
             setAvailableMoves(
                 availableMoves.filter((move) => move !== randomMove)
             );
-            setIsNextMoveUser(true);
+            setNextMoveUser(true);
         }
     }, [nextMoveUser]);
 
-    // detect if anyone won
+    // detect if anyone won when the board changes
     useEffect(() => {
         // check rows
         for (let i = 0; i < board.length; i++) {
@@ -81,6 +112,7 @@ export function Game() {
                 row[0] !== BOARD_DEFAULT
             ) {
                 setWinner(row[0]);
+                setHowWon(`row-${i}`);
                 return;
             }
         }
@@ -94,6 +126,7 @@ export function Game() {
                 column[0] !== BOARD_DEFAULT
             ) {
                 setWinner(column[0]);
+                setHowWon(`column-${i}`);
                 return;
             }
         }
@@ -106,6 +139,7 @@ export function Game() {
             diagonal1[0] !== BOARD_DEFAULT
         ) {
             setWinner(diagonal1[0]);
+            setHowWon("left");
             return;
         }
 
@@ -118,6 +152,7 @@ export function Game() {
             diagonal2[0] !== BOARD_DEFAULT
         ) {
             setWinner(diagonal2[0]);
+            setHowWon("right");
             return;
         }
     }, [board]);
@@ -135,7 +170,7 @@ export function Game() {
                         (move) => move !== rowIndex * 3 + colIndex
                     )
                 );
-                setIsNextMoveUser(false);
+                setNextMoveUser(false);
             } else {
                 console.warn("Move not available");
             }
@@ -148,27 +183,60 @@ export function Game() {
         <>
             {winner != null ? <ResultPopup winner={winner} /> : <></>}
 
-            <h3>You are X</h3>
-            <h3>Computer is O</h3>
+            <div className="info-value">
+                <h3>
+                    You are <span className="user">{USER_VALUE}</span>
+                </h3>
+                <h3>
+                    Computer is{" "}
+                    <span className="computer">{COMPUTER_VALUE}</span>
+                </h3>
+            </div>
 
-            <div className="board">
+            <div
+                className={`board ${howWon ? howWon : ""} ${
+                    winner === USER_VALUE
+                        ? "user"
+                        : winner === COMPUTER_VALUE
+                        ? "computer"
+                        : ""
+                }`}
+            >
+                <span className="line"></span>
                 {board.map((row, rowIndex) => (
                     <div className="row" key={rowIndex}>
-                        {row.map((cell, cellIndex) => (
-                            <button
-                                className="cell"
-                                key={cellIndex}
-                                onClick={() => onClick(rowIndex, cellIndex)}
-                                disabled={
-                                    // Check if cell is in available moves
-                                    !availableMoves.includes(
-                                        rowIndex * 3 + cellIndex
-                                    )
-                                }
-                            >
-                                {cell}
-                            </button>
-                        ))}
+                        {row.map((cell, cellIndex) => {
+                            const cellClassName = `cell ${
+                                cell === USER_VALUE
+                                    ? "user"
+                                    : cell === COMPUTER_VALUE
+                                    ? "computer"
+                                    : ""
+                            } ${
+                                // disable or not
+                                availableMoves.includes(
+                                    rowIndex * 3 + cellIndex
+                                )
+                                    ? ""
+                                    : "disabled"
+                            }`;
+
+                            return (
+                                <button
+                                    className={cellClassName}
+                                    key={cellIndex}
+                                    onClick={() => onClick(rowIndex, cellIndex)}
+                                    disabled={
+                                        // Check if cell is in available moves
+                                        !availableMoves.includes(
+                                            rowIndex * 3 + cellIndex
+                                        )
+                                    }
+                                >
+                                    {cell}
+                                </button>
+                            );
+                        })}
                     </div>
                 ))}
             </div>
