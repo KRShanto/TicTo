@@ -1,22 +1,33 @@
 {
-  "name": "ticto",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@types/node": "18.11.9",
-    "@types/react": "18.0.25",
-    "@types/react-dom": "18.0.8",
-    "next": "13.0.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-responsive": "^9.0.0",
-    "sass": "^1.56.1",
-    "typescript": "4.8.4"
-  }
+    "name": "ticto",
+    "version": "0.1.0",
+    "private": true,
+    "description": "A simple offline tic-tac-toe game built with Next.js and typescript",
+    "author": {
+        "name": "Shanto",
+        "email": "khalilorrahman2005@gmail.com"
+    },
+    "readme": "./README.md",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/KRShanto/TicTo"
+    },
+    "license": "MIT",
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@types/node": "18.11.9",
+        "@types/react": "18.0.25",
+        "@types/react-dom": "18.0.8",
+        "next": "13.0.3",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "react-responsive": "^9.0.0",
+        "sass": "^1.56.1",
+        "typescript": "4.8.4"
+    }
 }

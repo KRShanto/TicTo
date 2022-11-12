@@ -1,34 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TicTo
 
-## Getting Started
+A simple offline TicTacToe game written in Next.js and Typescript.
 
-First, run the development server:
+![A screenshot of the game](./docs/Screenshot_game_page.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Home page
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The home page doesn't contain much, just a link to the game page.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Game page
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+The game page contains the game itself. The game is played on a 3x3 grid. The game is played by two players, X and O. The first player to get 3 of their marks in a row (up, down, across, or diagonally) is the winner. When all 9 squares are full, and no player has 3 marks in a row, the game is a draw.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## History page
 
-## Learn More
+Here you can see the history of all the games played. The history is stored in the browser's local storage.
 
-To learn more about Next.js, take a look at the following resources:
+## License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The code is licensed under the MIT license. See the LICENSE file for more details.
