@@ -2,6 +2,8 @@
 
 A simple offline TicTacToe game written in Next.js and Typescript.
 
+You can play it here: [https://ticto.vercel.app/](https://ticto.vercel.app/)
+
 ![A screenshot of the game](./docs/Screenshot_game_page.png)
 
 ## Home page
