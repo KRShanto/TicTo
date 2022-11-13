@@ -52,8 +52,6 @@ export function Game() {
 
     // When anyone wins, remove the available moves
     useEffect(() => {
-        console.log("   winner", winner);
-
         if (winner !== null) {
             // remove the available moves
             setAvailableMoves([]);
@@ -166,11 +164,7 @@ export function Game() {
                 );
                 checkWinner(newBoard);
                 setNextMoveUser(false);
-            } else {
-                console.warn("Move not available");
             }
-        } else {
-            console.warn("It's not your turn");
         }
     };
 
