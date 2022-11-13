@@ -12,7 +12,7 @@ export default function Home() {
             <Head>
                 <title>TicTo</title>
                 <meta name="description" content="Play Tic Tac Toe game" />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/TicTo-logo.svg" />
             </Head>
 
             <main>

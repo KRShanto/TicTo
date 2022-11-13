@@ -5,11 +5,17 @@ nav {
     background-color: $bgColor;
     display: flex;
     justify-content: space-between;
-    padding: 5px 20px;
+    padding: 0 20px;
 
     .logo {
-        color: gold;
-        font-size: 2rem;
+        font-size: 1.5rem;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+
+        .title {
+            color: gold;
+        }
     }
 
     .links-div {
@@ -18,7 +24,6 @@ nav {
         align-items: center;
         justify-content: center;
         position: relative;
-        // border: 3px solid yellow;
 
         .menu {
             cursor: pointer;

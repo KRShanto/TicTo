@@ -36,13 +36,27 @@ export default function Navbar() {
 
     return (
         <nav>
-            <h1 className="logo">TicTo</h1>
+            <Link className="logo" href="/">
+                <img
+                    src="/TicTo-logo.svg"
+                    alt="Website logo"
+                    width={50}
+                    height={50}
+                />
+
+                <h1 className="title">TicTo</h1>
+            </Link>
 
             <div className="links-div">
                 {isResponsiveWidth ? (
                     // hamburger menu
                     <div className="menu" onClick={() => toggleLinksClass()}>
-                        <img src={imgUrl} width={30} height={30} />
+                        <img
+                            src={imgUrl}
+                            width={30}
+                            height={30}
+                            alt="Menu icon"
+                        />
                     </div>
                 ) : (
                     <></>
