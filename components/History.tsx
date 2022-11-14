@@ -49,6 +49,9 @@ export default function History() {
         <div className="history">
             <h1 className="title">Your Score</h1>
             <div className="score">
+                <p className="total-matches">
+                    Total Matches: <b>{history.length}</b>
+                </p>
                 <p className="win">
                     You won <b>{won}</b> times
                 </p>
