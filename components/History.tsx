@@ -10,8 +10,17 @@ export default function History() {
     // get the history from the local storage
     useEffect(() => {
         const logs = localStorage.getItem(LOGS_NAME);
+
         if (logs) {
-            setHistory(JSON.parse(logs));
+            // parse it into json
+            let jsonLog = JSON.parse(logs);
+
+            // sort the history by date and time
+            let jsonLogSorted = jsonLog.sort((a: any, b: any) => {
+                return new Date(b[0]).getTime() - new Date(a[0]).getTime();
+            });
+
+            setHistory(jsonLogSorted);
         }
     }, []);
 
