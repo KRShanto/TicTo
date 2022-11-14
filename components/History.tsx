@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { COMPUTER_VALUE, LOGS_NAME, USER_VALUE } from "../pages";
+import { COMPUTER_VALUE, LOGS_NAME, USER_VALUE, DRAW_VALUE } from "../pages";
 
 export default function History() {
     const [history, setHistory] = useState([]);
@@ -64,18 +64,18 @@ export default function History() {
                         <tr
                             key={i}
                             className={
-                                log[1] === 0
+                                log[1] === DRAW_VALUE
                                     ? "draw"
-                                    : log[1] === "X"
+                                    : log[1] === USER_VALUE
                                     ? "user"
                                     : "computer"
                             }
                         >
                             <td className="time">{log[0]}</td>
                             <td className="winner">
-                                {log[1] === 0
+                                {log[1] == DRAW_VALUE
                                     ? "Draw"
-                                    : log[1] === "X"
+                                    : log[1] === USER_VALUE
                                     ? "User"
                                     : "Computer"}
                             </td>

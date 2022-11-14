@@ -1,4 +1,4 @@
-import { USER_VALUE } from "../pages";
+import { USER_VALUE, DRAW_VALUE } from "../pages";
 
 type ResultPopupProps = {
     winner: string | number;
@@ -7,7 +7,7 @@ type ResultPopupProps = {
 // Popup component that shows the winner
 export default function ResultPopup({ winner }: ResultPopupProps) {
     // if winner is a number, it means draw. Nobody won
-    if (winner == 0) {
+    if (winner == DRAW_VALUE) {
         return (
             <div className="result-popup draw">
                 <h2 className="text">Game Draw</h2>
