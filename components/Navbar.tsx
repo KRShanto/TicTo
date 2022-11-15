@@ -11,7 +11,7 @@ export default function Navbar() {
     const [imgUrl, setImgUrl] = useState("/menu.svg");
     const router = useRouter();
     const media = useMediaQuery({
-        query: "(max-width: 500px)",
+        query: "(max-width: 600px)",
     });
 
     function toggleLinksClass() {
@@ -89,6 +89,12 @@ export default function Navbar() {
                             }
                         >
                             History
+                        </Link>
+                        <Link
+                            href="https://github.com/KRShanto/TicTo"
+                            target="_blank"
+                        >
+                            Github
                         </Link>
                     </div>
                 ) : (
