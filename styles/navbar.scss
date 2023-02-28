@@ -1,80 +1,79 @@
 nav {
-    $color: rgb(0, 255, 140);
-    $bgColor: rgb(3, 51, 90);
+  $color: rgb(0, 255, 140);
+  $bgColor: rgb(3, 51, 90);
 
-    background-color: $bgColor;
+  background-color: $bgColor;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+
+  .logo {
+    font-size: 1.5rem;
+    text-decoration: none;
     display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
+    align-items: center;
 
-    .logo {
-        font-size: 1.5rem;
+    .title {
+      color: gold;
+    }
+  }
+
+  .links-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    .menu {
+      cursor: pointer;
+    }
+
+    .links {
+      // border: 2px solid red;
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+
+      a {
+        color: white;
+        margin: 0 10px;
         text-decoration: none;
-        display: flex;
-        align-items: center;
+        transition: 1s;
+        font-weight: bold;
+        font-family: sans-serif;
 
-        .title {
-            color: gold;
+        &:hover {
+          color: $color;
         }
+      }
+
+      a.active {
+        color: $color;
+      }
     }
 
-    .links-div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: relative;
+    .links.responsive {
+      position: absolute;
+      top: 130%;
+      right: -30%;
+      flex-direction: column;
+      background-color: $bgColor;
+      padding: 20px;
+      border-radius: 5px;
+      z-index: 2000;
+      box-shadow: 0 0 5px white;
+      transform-origin: top;
+      transform: scaleY(0);
+      transition: 0.5s;
 
-        .menu {
-            cursor: pointer;
-        }
-
-        .links {
-            // border: 2px solid red;
-            display: flex;
-            align-items: center;
-            font-size: 1.2rem;
-
-            a {
-                color: white;
-                margin: 0 10px;
-                text-decoration: none;
-                transition: .5s;
-                font-weight: bold;
-                font-family: sans-serif;
-
-                &:hover {
-                    color: $color;
-                }
-            }
-
-            a.active {
-                color: $color;
-            }
-        }
-
-        .links.responsive {
-            position: absolute;
-            top: 130%;
-            right: -30%;
-            flex-direction: column;
-            background-color: $bgColor;
-            padding: 20px;
-            border-radius: 5px;
-            z-index: 2000;
-            box-shadow: 0 0 5px white;
-            transform-origin: top;
-            transform: scaleY(0);
-            transition: .5s;
-
-
-            a {
-                margin: 10px 0;
-            }
-        }
-
-        .links.active {
-            transform: scaleY(1);
-        }
+      a {
+        margin: 10px 0;
+      }
     }
+
+    .links.active {
+      transform: scaleY(1);
+    }
+  }
 }

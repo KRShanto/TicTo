@@ -1,0 +1,5 @@
+* NextAuth setup
+* Save history to mongodb
+* User Profile
+* Improve the `Confirm` and `Popup` components (add colors to texts)
+* 

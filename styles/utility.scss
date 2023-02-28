@@ -1,0 +1,53 @@
+.btn {
+  font-size: 25px;
+  display: inline-block;
+  background-color: transparent;
+  padding: 10px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s;
+  font-weight: bold;
+  text-shadow: 0px 0px 2px black;
+  text-decoration: none;
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.green {
+  $color: rgb(7, 169, 101);
+
+  color: $color;
+  border: 3px solid $color;
+
+  &:hover {
+    background-color: $color;
+    border-color: $color;
+    color: white;
+  }
+}
+
+.red {
+  $color: rgb(203, 20, 69);
+
+  color: $color;
+  border: 3px solid $color;
+
+  &:hover {
+    background-color: $color;
+    border-color: $color;
+    color: white;
+  }
+}
+
+.blue {
+  $color: rgb(2, 131, 191);
+
+  color: $color;
+  border: 3px solid $color;
+
+  &:hover {
+    background-color: $color;
+    border-color: $color;
+    color: white;
+  }
+}

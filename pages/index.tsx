@@ -1,31 +1,45 @@
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
+import ComputerIcon from "../public/computer.svg";
+import FriendsIcon from "../public/friend.svg";
 
-export const USER_VALUE = "X";
-export const COMPUTER_VALUE = "O";
-export const DRAW_VALUE = "0";
-export const BOARD_DEFAULT = "";
-export const LOGS_NAME = "Ticto-Logs";
+const ICON_SIZE = 30;
 
 export default function Home() {
-    return (
-        <>
-            <Head>
-                <title>TicTo</title>
-                <meta name="description" content="Play Tic Tac Toe game" />
-                <link rel="icon" href="/TicTo-logo.svg" />
-            </Head>
+  return (
+    <>
+      <Head>
+        <title>TicTo</title>
+        <meta name="description" content="Play Tic Tac Toe game" />
+        <link rel="icon" href="/TicTo-logo.svg" />
+      </Head>
 
-            <main>
-                <>
-                    <div className="play">
-                        <h1 className="play-text">Play Tic Tac Toe game</h1>
-                        <Link className="play-button start" href="/game">
-                            Start
-                        </Link>
-                    </div>
-                </>
-            </main>
+      <main>
+        <>
+          <div className="play">
+            <h1 className="play-text">Play Tic Tac Toe game</h1>
+            <Link className="btn green" href="/game">
+              <p className="text">Play with computer</p>
+              <Image
+                src={ComputerIcon}
+                alt="computer"
+                width={ICON_SIZE}
+                height={ICON_SIZE}
+              />
+            </Link>
+            <Link className="btn green" href="/multiplayer">
+              <p className="text">Play with friends</p>
+              <Image
+                src={FriendsIcon}
+                alt="friends"
+                width={ICON_SIZE}
+                height={ICON_SIZE}
+              />
+            </Link>
+          </div>
         </>
-    );
+      </main>
+    </>
+  );
 }

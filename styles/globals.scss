@@ -1,6 +1,5 @@
 html,
 body {
-
   background-color: rgb(8, 0, 35);
 }
 
@@ -11,42 +10,12 @@ body {
   color: rgb(208, 208, 208);
 }
 
-.play-button {
-  $color: rgb(7, 169, 101);
-
-  width: 200px;
-  font-size: 25px;
-  display: inline-block;
-  background-color: transparent;
-  color: $color;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.5s;
-  border: 3px solid $color;
-  font-weight: bold;
-  text-shadow: 0px 0px 2px black;
-  text-decoration: none;
-  text-align: center;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
-  &:hover {
-    background-color: $color;
-    border-color: $color;
-    color: white;
-
-  }
-}
-
 @import "./index.scss";
 @import "./history.scss";
 @import "./navbar.scss";
 @import "./game.scss";
 @import "resultPopup.scss";
-
-@media screen and (max-width: 500px) {
-  .play-button {
-    width: 100px;
-    font-size: 20px;
-  }
-}
+@import "./popup.scss";
+@import "./confirm.scss";
+@import "./multiplayer-game.scss";
+@import "./utility.scss";
